@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.3</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example.spring.security</groupId>
+	<artifactId>springsecurity-oauth2-mysql</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>springsecuritydemo-oauth2-mysql</name>
+	<description>Demo project for Spring Boot Security with OAuth2 and MySQL</description>
+
+
+	<properties>
+		<java.version>1.8</java.version>
+		<springdoc-openapi-ui.version>1.5.10</springdoc-openapi-ui.version>
+		<spring-security-oauth2.version>2.3.8.RELEASE</spring-security-oauth2.version>
+		<spring-security-oauth2-autoconfigure.version>2.2.3.RELEASE</spring-security-oauth2-autoconfigure.version>
+		<spring-security-jwt.version>1.1.0.RELEASE</spring-security-jwt.version>
+		<resource.delimiter>^</resource.delimiter>
+	</properties>
+
+
+	<dependencies>
+		<!-- Actuator is mainly used to expose operational information about the 
+			running application — health, metrics, info, dump, env, etc. It uses HTTP 
+			endpoints or JMX beans to enable us to interact with it. Once this dependency 
+			is on the classpath, several endpoints are available for us out of the box. 
+			https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<!-- Spring Boot provides spring-boot-starter-data-jpa dependency to connect 
+			Spring application with relational database efficiently. The spring-boot-starter-data-jpa 
+			internally uses the spring-boot-jpa dependency (since Spring Boot version 
+			1.5. 3). -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<!-- OAuth2 is an authorization framework that enables the application 
+			Web Security to access the resources from the client. To build an OAuth2 
+			application, we need to focus on the Grant Type (Authorization code), Client 
+			ID and Client secret. -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${spring-security-oauth2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth.boot</groupId>
+			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+			<version>${spring-security-oauth2-autoconfigure.version}</version>
+		</dependency>
+		<!-- JSON Web Token (JWT) is a standard for encoding information that may 
+			be securely transmitted as a JSON object -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+			<version>${spring-security-jwt.version}</version>
+		</dependency>
+		<!-- Spring Security is the primary choice for implementing application-level 
+			security in Spring applications. Generally, its purpose is to offer you a 
+			highly customizable way of implementing authentication, authorization, and 
+			protection against common attacks. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- It includes an embedded LiveReload server that is used to trigger 
+			a browser refresh when a resource is changed. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<!-- Micrometer Prometheus. Prometheus is a dimensional time series database 
+			with a built-in UI, a custom query language, and math operations. Prometheus 
+			is designed to operate on a pull model, periodically scraping metrics from 
+			application instances, based on service discovery. -->
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-prometheus</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- MySQL provides connectivity for client applications developed in the 
+			Java programming language with MySQL Connector/J, a driver that implements 
+			the Java Database Connectivity (JDBC) API. MySQL Connector/J is a JDBC Type 
+			4 driver. Different versions are available that are compatible with the JDBC 
+			3.0 and JDBC 4. -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- It is an annotation processor that generates metadata about classes 
+			in your application that are annotated with @ConfigurationProperties -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- Lombok is used to reduce boilerplate code for model/data objects, 
+			e.g., it can generate getters and setters for those object automatically 
+			by using Lombok annotations. The easiest way is to use the @Data annotation. -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!-- springdoc-openapi java library helps automating the generation of 
+			API documentation using spring boot projects. springdoc-openapi works by 
+			examining an application at runtime to infer API semantics based on spring 
+			configurations, class structure and various annotations. -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${springdoc-openapi-ui.version}</version>
+		</dependency>
+		<!-- The spring-boot-starter-test is the primary dependency that contains 
+			the majority of elements required for our tests. The H2 DB is our in-memory 
+			database. It eliminates the need for configuring and starting an actual database 
+			for test purposes. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- The Spring Boot Maven Plugin provides Spring Boot support in Apache 
+				Maven. It allows you to package executable jar (sometimes called “fat jars”) 
+				or war archives, run Spring Boot applications, generate build information 
+				and start your Spring Boot application prior to running integration tests. -->
+			<!-- Package as an executable jar/war Include if you want to make an executable 
+				jar[FAT JAR which includes all dependencies along with sprinboot loader] 
+				that you can run on commandline using java -jar jarNAME -->
+			<!-- If you are not including it, result would be just a regular jar. 
+				You could run the project using mvn spring-boot:run [on project root directory] -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

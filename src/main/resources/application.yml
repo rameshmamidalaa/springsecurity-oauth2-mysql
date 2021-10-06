@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  
+# Datasource settings: Set the configuration for the database connection.
+spring:
+  application:
+    name: springsecurity-oauth2-mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: Admin@789
+    #driver-class-name: com.mysql.jdbc.Driver
+# Hibernate ddl auto (create, create-drop, update, none, validate)
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+   
+application-description: ^project.description^
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    auditevents:
+      enabled: true  
+      
+ 
