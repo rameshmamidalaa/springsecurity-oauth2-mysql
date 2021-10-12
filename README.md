@@ -1,5 +1,5 @@
 # springsecurity-oauth2-mysql
-** Demo project for Spring Boot + SpringSecurity + OAuth2 + MySQL **
+**Demo project for Spring Boot + SpringSecurity + OAuth2 + MySQL**
 
 ### _Technical Stack used in this project:_
 	1. spring-boot-starter-parent 2.5.3
